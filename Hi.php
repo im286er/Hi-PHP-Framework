@@ -1,6 +1,6 @@
 <?php
 /**
- * 框架入口文件
+ * Hi框架入口文件
  */
 !defined('IN_HI') && die('Access Denied!');
 
