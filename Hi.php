@@ -95,7 +95,7 @@ class Hi {
 
         array_shift($name_arr);
         $path = $path . implode(SYSTEM_DS, $name_arr) . '.php';
-        require($path);
+        include($path);
         if (!class_exists($name, false) && !interface_exists($name, false)) {
             trigger_error('Class or interface does not exist in loaded file');
             return false;
