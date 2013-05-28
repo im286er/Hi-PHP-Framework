@@ -47,7 +47,7 @@ abstract class Hi_Cache_Abstract {
         if (isset($this->_pool[$cache_key])) {
             $data = $this->_pool[$cache_key];
         } else {
-            $data = Cache::instance($this->_instance)->fetch($cache_key);
+            $data = Hi_Cache_Helper::instance($this->_instance)->fetch($cache_key);
             //解压
             if ($this->_compress_level != 0) {
                 $data = unserialize(gzinflate($data));
@@ -87,7 +87,7 @@ abstract class Hi_Cache_Abstract {
         if ($this->_compress_level != 0) {
             $v = gzdeflate(serialize($v), $this->_compress_level);
         }
-        Cache::instance($this->_instance)->store($cache_key, $v, $this->_expire);
+        Hi_Cache_Helper::instance($this->_instance)->store($cache_key, $v, $this->_expire);
     }
 
     /**
@@ -97,7 +97,7 @@ abstract class Hi_Cache_Abstract {
     public function del($k) {
         $cache_key = $this->cache_key($k);
         unset($this->_pool[$k]);
-        Cache::instance($this->_instance)->del($cache_key);
+        Hi_Cache_Helper::instance($this->_instance)->del($cache_key);
     }
 
     /**
